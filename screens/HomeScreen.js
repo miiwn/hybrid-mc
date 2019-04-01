@@ -35,7 +35,7 @@ export default class HomeScreen extends Component {
   }
   render() {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View style={styles.promotion}>
             <FlatList
@@ -102,11 +102,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   promotion: {
-    height: 300
+    height: 310,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   promotionCard: {
-    width: 280,
-    height: 280,
+    width: 300,
+    height: 300,
     marginLeft: 8,
     marginRight: 8,
     backgroundColor: 'transparent',
@@ -115,8 +117,8 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   promotionImage: {
-    height: 280,
-    width: 280,
+    height: 300,
+    width: 300,
     borderRadius: 5
   },
   buttonGroup: {
@@ -158,8 +160,8 @@ const styles = StyleSheet.create({
   },
   mainText: {
     color: '#FFFFFF',
-    fontWeight: '600',
-    fontSize: 18,
+    fontWeight: '900',
+    fontSize: 20,
 
   },
   iconImage: {
@@ -167,14 +169,15 @@ const styles = StyleSheet.create({
     height: 25,
   },
   privileges: {
-    flex: 1,
+
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
   },
   title: {
     fontSize: 20,
     fontWeight: '800',
-    textAlign: 'left'
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   }
 
 });
