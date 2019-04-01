@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
-import HomeScreen from './../screens/HomeScreen';
+import HomeScreen from '../screens/HomeScreen';
 import DetailScreen from './../screens/DetailScreen';
 import PrivilegesScreen from './../screens/PrivilegesScreen'
-import LocationScreen from '../screens/LocationScreen';
+import MoreScreen from '../screens/MoreScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import LoginScreen from '../screens/LoginScreen';
 // import { Image } from 'native-base';
 
 
@@ -44,35 +45,36 @@ const ProfileNavigator = createStackNavigator(
   {
     Home: {
       screen: ProfileScreen,
-      navigationOptions: () => ({
-        title: 'Home',
-        headerTintColor: '#FEC208',
-        headerStyle: {
-          backgroundColor: '#CF240A',
-          height: 80
-        },
-        headerTitle: (
-          <View style={styles.profile}>
-            <View style={styles.profileColumnName} >
-              <Text style={styles.profileName}>Vipatip Thanunpraditkul</Text>
-            </View>
-            <View style={styles.profileColumnPic} >
-              <Image
-                style={styles.profilePic}
-                source={require('../images/mclogo.png')}
-              />
-            </View>
-          </View>
-        ),
-      }),
+      // navigationOptions: () => ({
+      //   title: 'Home',
+      //   headerTintColor: '#FEC208',
+      //   headerStyle: {
+      //     backgroundColor: '#dd002d',
+      //     height: 80
+      //   },
+      //   headerTitle: (
+      //     <View style={styles.profile}>
+      //       <View style={styles.profileColumnName} >
+      //         <Text style={styles.profileName}>Vipatip Thanunpraditkul</Text>
+      //       </View>
+      //       <View style={styles.profileColumnPic} >
+      //         <Image
+      //           style={styles.profilePic}
+      //           source={require('../images/profileThumbnail.png')}
+      //         />
+      //       </View>
+      //     </View>
+      //   ),
+      // }),
 
     },
-    Detail: {
-      screen: DetailScreen
-    }
-  },
-  {
-    initialRouteName: "Home"
+    Login: {
+      screen: LoginScreen
+    },
+
+  }, {
+    headerMode: 'none',
+    mode: 'modal'
   }
 );
 const TabNavigator = createBottomTabNavigator(
@@ -82,40 +84,38 @@ const TabNavigator = createBottomTabNavigator(
     },
     Privileges: {
       screen: PrivilegesScreen
-    },
-    Location: {
-      screen: LocationScreen
+
     },
     Profile: {
-      screen: ProfileNavigator
+      screen: ProfileScreen
     },
-    // More:{
-    //   screen: Mor
-    // }
+    More: {
+      screen: MoreScreen
+    }
 
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
-        let IconComponent = Ionicons;
+        let IconComponent = SimpleLineIcons;
         let iconName;
         if (routeName === 'Home') {
-          iconName = `ios-home`;
+          iconName = `home`;
         } else if (routeName === 'Privileges') {
-          iconName = `ios-card`;
+          iconName = `credit-card`;
         } else if (routeName === 'Location') {
-          iconName = `ios-pin`;
+          iconName = `location-pin`;
         }
         else if (routeName === 'Profile') {
-          iconName = `ios-person`;
+          iconName = `user`;
         }
-        //  else if (routeName === 'More') {
-        //   iconName = `ios-pin`;
-        // }
+        else if (routeName === 'More') {
+          iconName = `grid`;
+        }
 
         // You can return any component that you like here!
-        return <IconComponent name={iconName} size={25} color={tintColor} />;
+        return <IconComponent name={iconName} size={20} color={tintColor} />;
       },
     }),
     tabBarOptions: {
@@ -137,7 +137,23 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-const AppContainer = createAppContainer(TabNavigator);
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: TabNavigator,
+    },
+    Login: {
+      screen: LoginScreen,
+    },
+
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);
 const styles = StyleSheet.create({
   logo: {
     width: 40,
@@ -165,8 +181,12 @@ const styles = StyleSheet.create({
     fontWeight: '900'
   },
   profilePic: {
-    width: 40,
-    height: 40,
+    width: 55,
+    height: 55,
+    borderRadius: 28,
+  },
+  tabIcon: {
+    borderWidth: 20
   }
 });
 export default AppContainer;
