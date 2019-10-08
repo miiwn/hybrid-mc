@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 6828,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://nz-wmr.miiwnsnoopy.hybrid-mc.exp.direct",
   "packagerNgrokUrl": "https://packager.nz-wmr.miiwnsnoopy.hybrid-mc.exp.direct",
-  "ngrokPid": 7684,
+  "ngrokPid": 53992,
   "webpackServerPort": null
 }
